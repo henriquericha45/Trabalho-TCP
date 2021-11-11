@@ -1,11 +1,16 @@
 import java.util.ArrayList;
 
+
+
 class Catalogo{
 
     private ArrayList<Produto> produtos = new ArrayList<Produto>();
 
     /**
-    Adiciona um produto
+     * Adiciona um produto
+     * @param nome
+     * @param preco
+     * @param nomeLoja
      */
     public void addProduto(String nome, Double preco, String nomeLoja){
 
@@ -14,8 +19,9 @@ class Catalogo{
     }
 
     /**
-    Busca um produto no Catalogo
-    @return ArrayList<Produto> resposta
+     * Busca Produtos no Catalogo
+     * @param busca
+     * @return lista de produtos
      */
     public ArrayList<Produto> buscaProduto(String busca){
 

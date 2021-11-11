@@ -1,5 +1,7 @@
 import java.io.Serializable;
 
+
+
 public class Produto implements Serializable{
 
     private String nome;
@@ -13,12 +15,21 @@ public class Produto implements Serializable{
         this.nomeLoja = nomeLoja;
     }
 
+    /**
+     * Compara uma string com o nome do Produto
+     * @param busca
+     * @return boolean
+     */
     public boolean comparaNome(String busca){
         return nome.toLowerCase().contains(busca.toLowerCase());
     }
 
+
+    /**
+     * Imprime o nome do Produto
+     */
     public void imprimeNome(){
-        System.out.println(this.nome);
+        System.out.println(this.nome+" , "+this.preco+" , "+this.nomeLoja);
         
     }
 }

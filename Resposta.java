@@ -1,6 +1,8 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+
 public class Resposta implements Serializable{
 
     private ArrayList<Produto> produtos_resposta;
@@ -9,6 +11,9 @@ public class Resposta implements Serializable{
         this.produtos_resposta = lista;
     }
 
+    /**
+     * Imprime os Produtos contidos na Resposta
+     */
     public void imprimeProdutos(){
         for (int index = 0; index < produtos_resposta.size(); index++) {
 
