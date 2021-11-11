@@ -1,4 +1,7 @@
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -24,6 +27,15 @@ public class Trabalhador extends Thread {
 
             //Recebe string de busca enviada pelo cliente
             String s = entrada.readUTF();
+
+            //Abre o arquivo e salva o log
+            File file = new File("log.txt");
+            FileWriter fr = new FileWriter(file, true);
+            BufferedWriter br = new BufferedWriter(fr);
+            br.newLine();
+            br.write(s + " - " + String.valueOf(System.currentTimeMillis()));
+            br.close();
+            fr.close();
             
             //Gera a lista de resposta
             Resposta r = new Resposta(c.buscaProduto(s));
