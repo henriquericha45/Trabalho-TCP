@@ -22,12 +22,13 @@ public class Trabalhador extends Thread {
             DataInputStream entrada = new DataInputStream( t.getInputStream());
             ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
 
+            //Recebe string de busca enviada pelo cliente
             String s = entrada.readUTF();
-
-            System.out.println( "Recebido: " + s);
-
+            
+            //Gera a lista de resposta
             Resposta r = new Resposta(c.buscaProduto(s));
 
+            //Envia resposta
             gravador.writeObject(r);
 
             t.close();

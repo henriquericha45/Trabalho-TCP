@@ -18,16 +18,17 @@ public class Servidor {
         c.addProduto("Geladeira	Brastemp 400 litros", 3700.00, "Magalu");
 
         
-
-
         try {
+
             ServerSocket ss = new ServerSocket(5000);
 
-            while (true)
+            int x = 1;
+            while (x==1)
             {
-                System.out.println( "Servidor aguardando um cliente ...");
+                System.out.println( "Servidor: aguardando um cliente ...");
 
-                Socket t = ss.accept(); // bloqueia até receber pedido de conexão do cliente
+                //Aguarda receber pedido de conexão do cliente
+                Socket t = ss.accept(); 
 
                 System.out.println( "Servidor: conexao feita");
 
@@ -36,7 +37,7 @@ public class Servidor {
 
             }
 
-            
+            ss.close();
 
         } catch (IOException e) {
             
