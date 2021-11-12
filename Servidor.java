@@ -13,14 +13,15 @@ public class Servidor {
 
         c.addProduto("Geladeira Consul 500 litros", 2500.00, "Lojas Americanas");
         c.addProduto("Geladeira Brastemp 440 litros", 3800.00, "Casas Bahia");
-        c.addProduto("Geladeira	Electrolux 380 litros", 2100.00, "Casas Bahia");
-        c.addProduto("Geladeira	Electrolux 380 litros", 2300.00, "Magalu");
-        c.addProduto("Geladeira	Brastemp 400 litros", 3700.00, "Magalu");
+        c.addProduto("Geladeira Electrolux 380 litros", 2100.00, "Casas Bahia");
+        c.addProduto("Geladeira Electrolux 380 litros", 2300.00, "Magalu");
+        c.addProduto("Geladeira Brastemp 400 litros", 3700.00, "Magalu");
 
         
         try {
 
             ServerSocket ss = new ServerSocket(5000);
+            
 
             int x = 1;
             while (x==1)
