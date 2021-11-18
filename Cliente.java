@@ -1,5 +1,6 @@
 import java.io.DataOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -9,6 +10,8 @@ public class Cliente {
 
     public static void main(String[] args) {
         
+        //ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
+        //ObjectInputStream leitor = new ObjectInputStream(t.getInputStream());
 
         // Abre conexão com o servidor
         try {
@@ -16,7 +19,7 @@ public class Cliente {
             Socket s = new Socket("127.0.0.1", 5000);
             System.out.println( "Cliente: conexao feita com o servidor" );
 
-            DataOutputStream saida = new DataOutputStream(s.getOutputStream()); 
+            ObjectOutputStream gravador = new ObjectOutputStream(s.getOutputStream());
             
             //Solicita ao usuário o texto para busca
             System.out.println("Insira o produto que deseja procurar: ");
@@ -25,14 +28,14 @@ public class Cliente {
             input.close();
             
             //Envia o texto para o servidor
-            saida.writeUTF(busca);
+            gravador.writeObject(busca);
 
-            ObjectInputStream entrada = new ObjectInputStream(s.getInputStream());
+            ObjectInputStream leitor = new ObjectInputStream(s.getInputStream());
 
             System.out.println("Aguardando um objeto ...");
             
             //Recebe o objeto do servidor
-            Resposta r = (Resposta) entrada.readObject();
+            Resposta r = (Resposta) leitor.readObject();
             
             //Imprime os produtos para o cliente
             r.imprimeProdutos();
