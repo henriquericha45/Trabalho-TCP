@@ -3,11 +3,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
 
 
 
@@ -25,25 +26,25 @@ public class Trabalhador extends Thread {
     public void run()
     {
         try
-        {
-            DataInputStream entrada = new DataInputStream( t.getInputStream());
+        {   
             ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
-            DataOutputStream saida = new DataOutputStream(t.getOutputStream());
+            ObjectInputStream leitor = new ObjectInputStream(t.getInputStream());
+
             
+            Instant momentoAgora = Instant.now();
 
             //Recebe string de busca enviada pelo cliente
-            String s = entrada.readUTF();
+            String s = (String) leitor.readObject();
             System.out.println(s);
 
             if(s.contains("admin")){
 
-                System.out.println("enviou");
+                System.out.println("Servidor: enviou");
                 String log = new String(Files.readAllBytes(Paths.get("log.txt")));
-                System.out.println(log);
                 
-                saida.writeUTF("abc");
-                saida.flush();
-                saida.close();
+                gravador.writeObject(log);
+                
+                gravador.close();
 
             } else{
 
@@ -52,7 +53,7 @@ public class Trabalhador extends Thread {
                 FileWriter fr = new FileWriter(file, true);
                 BufferedWriter br = new BufferedWriter(fr);
                 br.newLine();
-                br.write(s + " - " + String.valueOf(System.currentTimeMillis()));
+                br.write(s + " - " + momentoAgora);
                 br.close();
                 fr.close();
                 

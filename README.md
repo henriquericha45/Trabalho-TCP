@@ -1,6 +1,6 @@
 ## Trabalho-TCP
 
-**Exercício	de	Programação	Distribuída:	Sistema	de	Busca	de	Produtos**
+**Exercício de	Programação Distribuída:	Sistema	de	Busca	de	Produtos**
 
 Construa	um	sistema	distribuído	de	busca	de	produtos,	conforme	mostra	a	figura	abaixo,	com	
 os	seguintes	tipos	de	processos:
