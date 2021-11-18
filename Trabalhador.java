@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.time.Instant;
+import java.time.Instant;
 
 
 
@@ -22,6 +24,9 @@ public class Trabalhador extends Thread {
     {
         try
         {
+
+            Instant momentoAgora = Instant.now();
+
             DataInputStream entrada = new DataInputStream( t.getInputStream());
             ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
 
@@ -33,7 +38,7 @@ public class Trabalhador extends Thread {
             FileWriter fr = new FileWriter(file, true);
             BufferedWriter br = new BufferedWriter(fr);
             br.newLine();
-            br.write(s + " - " + String.valueOf(System.currentTimeMillis()));
+            br.write(s + " - " + momentoAgora);
             br.close();
             fr.close();
             
