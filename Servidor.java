@@ -9,13 +9,6 @@ public class Servidor {
 
     public static void main(String[] args) {
 
-        Catalogo c = new Catalogo();
-
-        c.addProduto("Geladeira Consul 500 litros", 2500.00, "Lojas Americanas");
-        c.addProduto("Geladeira Brastemp 440 litros", 3800.00, "Casas Bahia");
-        c.addProduto("Geladeira Electrolux 380 litros", 2100.00, "Casas Bahia");
-        c.addProduto("Geladeira Electrolux 380 litros", 2300.00, "Magalu");
-        c.addProduto("Geladeira Brastemp 400 litros", 3700.00, "Magalu");
 
         
         try {
@@ -33,7 +26,7 @@ public class Servidor {
 
                 System.out.println( "Servidor: conexao feita");
 
-                Trabalhador trab = new Trabalhador(t,c);
+                Trabalhador trab = new Trabalhador(t);
                 trab.start();
 
             }

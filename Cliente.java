@@ -9,8 +9,6 @@ public class Cliente {
 
     public static void main(String[] args) {
         
-        //ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
-        //ObjectInputStream leitor = new ObjectInputStream(t.getInputStream());
 
         // Abre conexão com o servidor
         try {

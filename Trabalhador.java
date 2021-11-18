@@ -3,6 +3,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -13,12 +16,10 @@ import java.time.Instant;
 public class Trabalhador extends Thread {
 
     private Socket t;
-    private Catalogo c;
 
-    public Trabalhador( Socket t, Catalogo c)
+    public Trabalhador( Socket t)
     {
         this.t = t;
-        this.c = c;
     }
 
     public void run()
@@ -28,7 +29,6 @@ public class Trabalhador extends Thread {
             ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
             ObjectInputStream leitor = new ObjectInputStream(t.getInputStream());
 
-            
             Instant momentoAgora = Instant.now();
 
             //Recebe string de busca enviada pelo cliente
@@ -54,10 +54,23 @@ public class Trabalhador extends Thread {
                 br.write(s + " - " + momentoAgora);
                 br.close();
                 fr.close();
+
+                //Configura conexao UDP multicast
+                InetAddress grupo = InetAddress.getByName( "224.0.0.1" );
+                MulticastSocket ms = new MulticastSocket();
+
+                DatagramPacket busca = new DatagramPacket( s.getBytes(), s.length(), grupo, 3000 );
+                
+                //Envia a busca as lojas
+                System.out.println( "Enviando mensagem para o grupo ..." + s.length() );
+                ms.send(busca);
+                System.out.println( "Ok." );
                 
                 //Gera a lista de resposta
-                Resposta r = new Resposta(c.buscaProduto(s));
-
+                
+                
+                Resposta r = new Resposta(/*c.buscaProduto(s)*/);
+                
                 //Envia resposta
                 gravador.writeObject(r);
 

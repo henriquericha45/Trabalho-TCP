@@ -1,18 +1,16 @@
 import java.io.Serializable;
 
 
-
 public class Produto implements Serializable{
 
     private String nome;
     private double preco;
-    private String nomeLoja;
 
 
-    public Produto(String nome, double preco, String nomeLoja){
+    public Produto(String nome, double preco){
         this.nome = nome;
         this.preco = preco;
-        this.nomeLoja = nomeLoja;
+        
     }
 
     /**
@@ -26,10 +24,19 @@ public class Produto implements Serializable{
 
 
     /**
-     * Imprime o nome do Produto
+     * Retorna o nome do produto
      */
-    public void imprimeNome(){
-        System.out.println(this.nome+" , "+this.preco+" , "+this.nomeLoja);
+    public String nome(){
+        return this.nome;
         
     }
+
+    /**
+     * Retorna o preço do produto
+     */
+    public String preco(){
+        return String.valueOf(this.preco);
+        
+    }
+
 }

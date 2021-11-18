@@ -11,13 +11,20 @@ public class Resposta implements Serializable{
         this.produtos_resposta = lista;
     }
 
+    public Resposta(){
+        
+    }
+
     /**
      * Imprime os Produtos contidos na Resposta
      */
     public void imprimeProdutos(){
+        for (Produto produto : produtos_resposta) {
+            
+        }
         for (int index = 0; index < produtos_resposta.size(); index++) {
 
-           produtos_resposta.get(index).imprimeNome();
+           //produtos_resposta.get(index).imprimeNome();
         }
     }
 

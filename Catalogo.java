@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 
-
 class Catalogo{
 
     private ArrayList<Produto> produtos = new ArrayList<Produto>();
@@ -10,11 +9,10 @@ class Catalogo{
      * Adiciona um produto
      * @param nome
      * @param preco
-     * @param nomeLoja
      */
-    public void addProduto(String nome, Double preco, String nomeLoja){
+    public void addProduto(String nome, Double preco){
 
-        produtos.add(new Produto(nome, preco, nomeLoja));
+        produtos.add(new Produto(nome, preco));
 
     }
 
