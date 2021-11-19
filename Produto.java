@@ -1,7 +1,6 @@
 import java.io.Serializable;
 
 
-
 public class Produto implements Serializable{
 
     private String nome;
@@ -10,9 +9,11 @@ public class Produto implements Serializable{
 
 
     public Produto(String nome, double preco, String nomeLoja){
+
         this.nome = nome;
         this.preco = preco;
         this.nomeLoja = nomeLoja;
+    
     }
 
     /**
@@ -26,10 +27,12 @@ public class Produto implements Serializable{
 
 
     /**
-     * Imprime o nome do Produto
+     * Imprime os dados do produto
      */
-    public void imprimeNome(){
-        System.out.println(this.nome+" , "+this.preco+" , "+this.nomeLoja);
+    public void imprimirProduto(){
+        System.out.println(this.nome + " -  R$" + this.preco + " - " + this.nomeLoja+"\n");
         
     }
+
+
 }
