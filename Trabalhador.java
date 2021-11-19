@@ -16,10 +16,12 @@ import java.time.Instant;
 public class Trabalhador extends Thread {
 
     private Socket t;
+    private MulticastSocket ms;
 
-    public Trabalhador( Socket t)
+    public Trabalhador( Socket t, MulticastSocket ms)
     {
         this.t = t;
+        this.ms = ms;
     }
 
     public void run()
@@ -55,10 +57,8 @@ public class Trabalhador extends Thread {
                 br.close();
                 fr.close();
 
-                //Configura conexao UDP multicast
-                InetAddress grupo = InetAddress.getByName( "224.0.0.1" );
-                MulticastSocket ms = new MulticastSocket();
 
+                InetAddress grupo = InetAddress.getByName( "228.5.6.7" );
                 DatagramPacket busca = new DatagramPacket( s.getBytes(), s.length(), grupo, 3000 );
                 
                 //Envia a busca as lojas

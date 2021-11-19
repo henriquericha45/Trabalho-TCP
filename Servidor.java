@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -14,6 +16,8 @@ public class Servidor {
         try {
 
             ServerSocket ss = new ServerSocket(5000);
+
+            MulticastSocket ms = new MulticastSocket();
             
 
             int x = 1;
@@ -26,7 +30,7 @@ public class Servidor {
 
                 System.out.println( "Servidor: conexao feita");
 
-                Trabalhador trab = new Trabalhador(t);
+                Trabalhador trab = new Trabalhador(t,ms);
                 trab.start();
 
             }
