@@ -50,7 +50,7 @@ public class Trabalhador extends Thread {
                 System.out.println(nome+": mensagem admin enviada");
                 String log = new String(Files.readAllBytes(Paths.get("log.txt")));
 
-                String texto_resposta = "\nTime out: "+timeout
+                String texto_resposta = "\nTimeout: "+timeout[0]
                 +"ms \n" + log;
                 
                 gravador.writeObject(texto_resposta);
@@ -94,10 +94,9 @@ public class Trabalhador extends Thread {
                 DatagramPacket pacote = new DatagramPacket(new byte[500],500);
                 DatagramSocket socket = new DatagramSocket(7000);
                 
-                socket.setSoTimeout(5000);
+                socket.setSoTimeout(timeout[0]);
                 
 
-                //por 20 segundos recebe respostas
                 while(continuar){
 
                     //Gera a lista de resposta

@@ -42,7 +42,7 @@ public class Administrador {
 
             } else if (op.contains("2")) {
 
-                System.out.println("\nNovo time out:");
+                System.out.println("\nNovo timeout:");
                 String to = input.nextLine();
                 
                 //Envia o texto para o servidor
