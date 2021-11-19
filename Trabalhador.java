@@ -56,12 +56,11 @@ public class Trabalhador extends Thread {
 
             } else if(s.contains("timeout")) {
 
-                System.out.println(nome+": mensagem admin enviada");
-                String log = new String(Files.readAllBytes(Paths.get("log.txt")));
-                
-                gravador.writeObject(log);
-                
-                gravador.close();
+                s.replace("timeout ", "");
+                timeout = Integer.parseInt(s);
+
+                System.out.println(nome+": Timeout alterado >" + s);
+
 
             } else {
 
