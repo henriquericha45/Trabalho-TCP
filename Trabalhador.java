@@ -19,16 +19,18 @@ public class Trabalhador extends Thread {
 
     private Socket t;
     private MulticastSocket ms;
+    int[] timeout;
 
-    public Trabalhador( Socket t, MulticastSocket ms)
+    public Trabalhador( Socket t, MulticastSocket ms, int[] timeout)
     {
         this.t = t;
         this.ms = ms;
+        this.timeout = timeout;
     }
 
     public void run() {
 
-        int timeout = 2000;
+        
         String nome = Thread.currentThread().getName();
 
         try
@@ -41,6 +43,7 @@ public class Trabalhador extends Thread {
             //Recebe string de busca enviada pelo cliente
             String s = (String) leitor.readObject();
             System.out.println(s);
+
 
             if(s.contains("admin")) {
 
@@ -56,10 +59,10 @@ public class Trabalhador extends Thread {
 
             } else if(s.contains("timeout")) {
 
-                s.replace("timeout ", "");
-                timeout = Integer.parseInt(s);
+                String timeout_resposta = s.replace("timeout ", "");
+                timeout[0] = Integer.parseInt(timeout_resposta);
 
-                System.out.println(nome+": Timeout alterado >" + s);
+                System.out.println(nome+": Timeout alterado >" + timeout_resposta);
 
 
             } else {

@@ -21,7 +21,7 @@ public class Administrador {
             ObjectInputStream leitor = new ObjectInputStream(s.getInputStream());
 
             //Solicita ao administrador a opcao
-            System.out.println("\n 1 - Informações\n2 - Alterar timeout");
+            System.out.println("\n1 - Informacoes\n2 - Alterar timeout");
             Scanner input = new Scanner(System.in); 
             String op = input.nextLine();
             
@@ -42,7 +42,7 @@ public class Administrador {
 
             } else if (op.contains("2")) {
 
-                System.out.println("\n Novo time out:");
+                System.out.println("\nNovo time out:");
                 String to = input.nextLine();
                 
                 //Envia o texto para o servidor

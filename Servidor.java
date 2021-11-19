@@ -8,15 +8,18 @@ import java.net.Socket;
 public class Servidor {
 
 
+
     public static void main(String[] args) {
 
-
-        
+    
         try {
 
             ServerSocket ss = new ServerSocket(5000);
 
             MulticastSocket ms = new MulticastSocket();
+
+            int[] timeout = {2000}; 
+
             
 
             int x = 1;
@@ -29,7 +32,7 @@ public class Servidor {
 
                 System.out.println( "Servidor: conexao feita");
 
-                Trabalhador trab = new Trabalhador(t,ms);
+                Trabalhador trab = new Trabalhador(t, ms, timeout);
                 trab.start();
 
             }
