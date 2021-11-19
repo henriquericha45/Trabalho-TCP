@@ -22,7 +22,7 @@ public class Servidor {
             int x = 1;
             while (x==1)
             {
-                System.out.println( "Servidor: aguardando um cliente ...");
+                System.out.println( "Servidor: aguardando cliente");
 
                 //Aguarda receber pedido de conexão do cliente
                 Socket t = ss.accept(); 

@@ -41,7 +41,7 @@ public class Trabalhador extends Thread {
 
             if(s.contains("admin")){
 
-                System.out.println("Servidor: enviou");
+                System.out.println("Servidor: mensagem admin enviada");
                 String log = new String(Files.readAllBytes(Paths.get("log.txt")));
                 
                 gravador.writeObject(log);
@@ -64,7 +64,7 @@ public class Trabalhador extends Thread {
                 DatagramPacket busca = new DatagramPacket( s.getBytes(), s.length(), grupo, 3000 );
                 
                 //Envia a busca as lojas
-                System.out.println( "Enviando mensagem para o grupo ..." + s.length() );
+                System.out.println( "Servidor: Enviando para o grupo" + s.length() );
                 ms.send(busca);
                 System.out.println( "Ok." );
                 
@@ -85,12 +85,12 @@ public class Trabalhador extends Thread {
 
                     //Gera a lista de resposta
 
-                    System.out.println("Aguardando pacote ...");
+                    System.out.println("Servidor: Aguardando pacote resposta");
                     try {
 
                         socket.receive(pacote);
                         
-                        System.out.println("Pacote recebido!");
+                        System.out.println("Servidor: Pacote recebido");
 
                         byte[] objeto_binario = pacote.getData();
                         ByteArrayInputStream buf =  new ByteArrayInputStream(objeto_binario);
@@ -121,7 +121,7 @@ public class Trabalhador extends Thread {
           
 
             t.close();
-            System.out.println( "Servidor: conexao encerrada");
+            System.out.println( "Servidor: Conexao encerrada");
         }
         catch( Exception e )
         {

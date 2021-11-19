@@ -10,9 +10,9 @@ class Catalogo{
      * @param nome
      * @param preco
      */
-    public void addProduto(String nome, Double preco){
+    public void addProduto(String nome, Double preco, String nomeLoja){
 
-        produtos.add(new Produto(nome, preco));
+        produtos.add(new Produto(nome, preco, nomeLoja));
 
     }
 
@@ -35,12 +35,7 @@ class Catalogo{
 
     }
 
-    public ArrayList<Produto> rt(){
 
-
-        return this.produtos;
-
-    }
 
 }
 

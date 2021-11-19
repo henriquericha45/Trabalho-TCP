@@ -5,12 +5,15 @@ public class Produto implements Serializable{
 
     private String nome;
     private double preco;
+    private String nomeLoja;
 
 
-    public Produto(String nome, double preco){
+    public Produto(String nome, double preco, String nomeLoja){
+
         this.nome = nome;
         this.preco = preco;
-        
+        this.nomeLoja = nomeLoja;
+    
     }
 
     /**
@@ -24,19 +27,12 @@ public class Produto implements Serializable{
 
 
     /**
-     * Retorna o nome do produto
+     * Imprime os dados do produto
      */
-    public String nome(){
-        return this.nome;
+    public void imprimirProduto(){
+        System.out.println(this.nome + " -  R$" + this.preco + " - " + this.nomeLoja);
         
     }
 
-    /**
-     * Retorna o preço do produto
-     */
-    public String preco(){
-        return String.valueOf(this.preco);
-        
-    }
 
 }

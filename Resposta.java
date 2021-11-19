@@ -42,7 +42,7 @@ public class Resposta implements Serializable{
      */
     public void imprimeProdutos(){
         for (Produto produto : produtos_resposta) {
-            System.out.println(produto.nome());
+            produto.imprimirProduto();
         }
     }
 
