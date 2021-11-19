@@ -1,6 +1,7 @@
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Scanner;
 
 
 
@@ -13,28 +14,48 @@ public class Administrador {
         try {
 
             Socket s = new Socket("127.0.0.1", 5000);
-            System.out.println( "Administrador: conexao feita com o servidor" );
+            System.out.println( "Administrador: conexao com servidor" );
 
 
             ObjectOutputStream gravador = new ObjectOutputStream(s.getOutputStream());
             ObjectInputStream leitor = new ObjectInputStream(s.getInputStream());
-            
-            //Envia o texto para o servidor
-            gravador.writeObject("admin");
+
+            //Solicita ao administrador a opcao
+            System.out.println("\n 1 - Informações\n2 - Alterar timeout");
+            Scanner input = new Scanner(System.in); 
+            String op = input.nextLine();
             
 
-            System.out.println("Aguardando ...");
+            if(op.contains("1")){
+
+                //Envia o texto para o servidor
+                gravador.writeObject("admin");
+                
+
+                System.out.println("Administrador: Aguardando");
+                
+                //Recebe o log do servidor            
+                String log = (String) leitor.readObject();
+                
+                //Imprime oo log
+                System.out.println(log);
+
+            } else if (op.contains("2")) {
+
+                System.out.println("\n Novo time out:");
+                String to = input.nextLine();
+                
+                //Envia o texto para o servidor
+                gravador.writeObject("timeout "+to);
+            }
             
-            //Recebe o log do servidor            
-            String log = (String) leitor.readObject();
-            
-            //Imprime oo log
-            System.out.println(log);
 
             //Encerra a conexao
             s.close();
 
-            System.out.println( "Administrador: conexao encerrada");
+            input.close();
+
+            System.out.println( "Administrador: Conexao encerrada");
         } catch (Exception e) {
             
             e.printStackTrace();

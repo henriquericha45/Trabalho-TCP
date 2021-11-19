@@ -41,7 +41,7 @@ public class Resposta implements Serializable{
      * Imprime os Produtos contidos na Resposta
      */
     public void imprimeProdutos(){
-        System.out.println("\n------------LISTA DE PRODUTOS------------");
+        System.out.println("\n-----------------LISTA DE PRODUTOS-----------------\n");
         for (Produto produto : produtos_resposta) {
             produto.imprimirProduto();
         }

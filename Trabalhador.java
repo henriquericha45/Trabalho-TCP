@@ -26,9 +26,11 @@ public class Trabalhador extends Thread {
         this.ms = ms;
     }
 
-    public void run()
-    {
+    public void run() {
+
+        int timeout = 2000;
         String nome = Thread.currentThread().getName();
+
         try
         {   
             ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
@@ -40,7 +42,19 @@ public class Trabalhador extends Thread {
             String s = (String) leitor.readObject();
             System.out.println(s);
 
-            if(s.contains("admin")){
+            if(s.contains("admin")) {
+
+                System.out.println(nome+": mensagem admin enviada");
+                String log = new String(Files.readAllBytes(Paths.get("log.txt")));
+
+                String texto_resposta = "\nTime out: "+timeout
+                +"ms \n" + log;
+                
+                gravador.writeObject(texto_resposta);
+                
+                gravador.close();
+
+            } else if(s.contains("timeout")) {
 
                 System.out.println(nome+": mensagem admin enviada");
                 String log = new String(Files.readAllBytes(Paths.get("log.txt")));
