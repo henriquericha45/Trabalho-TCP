@@ -36,7 +36,7 @@ public class Loja {
                 DatagramPacket mensagem_pacote =
                     new DatagramPacket(mensagem_bytes, mensagem_bytes.length);
 
-                System.out.print(nome+": Aguardando busca");
+                System.out.println(nome+": Aguardando busca");
                 s.receive(mensagem_pacote);
                 
 
@@ -45,7 +45,7 @@ public class Loja {
 
                 System.out.println(nome+": Mensagen recebida > "+ dados_texto);
 
-                //
+                //Cria resposta com catalogo
                 Resposta r = new Resposta(c.buscaProduto(dados_texto));
 
                 ByteArrayOutputStream buf =  new ByteArrayOutputStream();
@@ -53,7 +53,7 @@ public class Loja {
                 gravador.writeObject(r);
                 byte[] objeto_binario = buf.toByteArray();
                 int tam = objeto_binario.length;
-                System.out.println(tam);
+                
 
                 InetAddress endereco_servidor = InetAddress.getByName("127.0.0.1");
                 int porta_servidor = 7000;

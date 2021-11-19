@@ -30,7 +30,7 @@ public class Produto implements Serializable{
      * Imprime os dados do produto
      */
     public void imprimirProduto(){
-        System.out.println(this.nome + " -  R$" + this.preco + " - " + this.nomeLoja);
+        System.out.println(this.nome + " -  R$" + this.preco + " - " + this.nomeLoja+"\n");
         
     }
 
