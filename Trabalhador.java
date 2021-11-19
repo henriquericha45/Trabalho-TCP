@@ -28,6 +28,7 @@ public class Trabalhador extends Thread {
 
     public void run()
     {
+        String nome = Thread.currentThread().getName();
         try
         {   
             ObjectOutputStream gravador = new ObjectOutputStream(t.getOutputStream());
@@ -41,7 +42,7 @@ public class Trabalhador extends Thread {
 
             if(s.contains("admin")){
 
-                System.out.println("Servidor: mensagem admin enviada");
+                System.out.println(nome+": mensagem admin enviada");
                 String log = new String(Files.readAllBytes(Paths.get("log.txt")));
                 
                 gravador.writeObject(log);
@@ -64,9 +65,9 @@ public class Trabalhador extends Thread {
                 DatagramPacket busca = new DatagramPacket( s.getBytes(), s.length(), grupo, 3000 );
                 
                 //Envia a busca as lojas
-                System.out.println( "Servidor: Enviando para o grupo" + s.length() );
+                System.out.println( nome+": Enviando para o grupo");
                 ms.send(busca);
-                System.out.println( "Ok." );
+                
                 
 
                 Resposta r = new Resposta();
@@ -85,12 +86,12 @@ public class Trabalhador extends Thread {
 
                     //Gera a lista de resposta
 
-                    System.out.println("Servidor: Aguardando pacote resposta");
+                    System.out.println(nome+": Aguardando pacote resposta");
                     try {
 
                         socket.receive(pacote);
                         
-                        System.out.println("Servidor: Pacote recebido");
+                        System.out.println(nome+": Pacote recebido");
 
                         byte[] objeto_binario = pacote.getData();
                         ByteArrayInputStream buf =  new ByteArrayInputStream(objeto_binario);
@@ -121,7 +122,7 @@ public class Trabalhador extends Thread {
           
 
             t.close();
-            System.out.println( "Servidor: Conexao encerrada");
+            System.out.println( nome+": Conexao encerrada");
         }
         catch( Exception e )
         {
