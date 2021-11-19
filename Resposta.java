@@ -27,6 +27,22 @@ public class Resposta implements Serializable{
         
     }
 
+    /**
+     * Adiciona Mensagem
+     */
+    public void add(String nome){
+        produtos_resposta.add(new Produto(nome));
+        
+    }
+
+    /**
+     * Verifica se esta vazio
+     */
+    public boolean verifica(){
+        return produtos_resposta.isEmpty();
+        
+    }
+
     
     /**
      * Retorna lista de produtos
@@ -45,6 +61,18 @@ public class Resposta implements Serializable{
         for (Produto produto : produtos_resposta) {
             produto.imprimirProduto();
         }
+    }
+
+    /**
+     * Gera resposta
+     */
+    public String respostaProdutos(){
+        String r = "";
+        r = r + "\n-----------------LISTA DE PRODUTOS-----------------\n";
+        for (Produto produto : produtos_resposta) {
+            r = r + produto.imprimirProduto();
+        }
+        return r;
     }
 
 

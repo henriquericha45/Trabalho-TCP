@@ -32,10 +32,13 @@ public class Cliente {
             System.out.println("Cliente: Aguardando objeto resposta");
             
             //Recebe o objeto do servidor
-            Resposta r = (Resposta) leitor.readObject();
+            //Resposta r = (Resposta) leitor.readObject();
+
+            String r = (String) leitor.readObject();
             
             //Imprime os produtos para o cliente
-            r.imprimeProdutos();
+            //r.imprimeProdutos();
+            System.out.println(r);
 
             //Encerra a conexao
             s.close();

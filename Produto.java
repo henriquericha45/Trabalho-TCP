@@ -16,6 +16,13 @@ public class Produto implements Serializable{
     
     }
 
+    public Produto(String nome){
+
+        this.nome = nome;
+
+    
+    }
+
     /**
      * Compara uma string com o nome do Produto
      * @param busca
@@ -29,8 +36,8 @@ public class Produto implements Serializable{
     /**
      * Imprime os dados do produto
      */
-    public void imprimirProduto(){
-        System.out.println(this.nome + " -  R$" + this.preco + " - " + this.nomeLoja+"\n");
+    public String imprimirProduto(){
+        return this.nome + " -  R$" + this.preco + " - " + this.nomeLoja+"\n";
         
     }
 

@@ -129,9 +129,20 @@ public class Trabalhador extends Thread {
                 
                 socket.close();
 
-                
+
                 //Envia resposta
-                gravador.writeObject(r);
+
+                if(r.verifica()){
+
+                    gravador.writeObject("Nenhum Produto Encontrado");
+
+                } else {
+
+                    gravador.writeObject(r.respostaProdutos());
+
+                }
+                
+
 
             }
           
