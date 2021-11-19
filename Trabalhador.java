@@ -48,7 +48,7 @@ public class Trabalhador extends Thread {
                 
                 gravador.close();
 
-            } else{
+            } else {
 
                 //Abre o arquivo e salva o log
                 File file = new File("log.txt");
@@ -77,7 +77,7 @@ public class Trabalhador extends Thread {
                 DatagramPacket pacote = new DatagramPacket(new byte[500],500);
                 DatagramSocket socket = new DatagramSocket(7000);
                 
-                socket.setSoTimeout(60);
+                socket.setSoTimeout(5000);
                 
 
                 //por 20 segundos recebe respostas
