@@ -1,9 +1,11 @@
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.Socket;
@@ -57,7 +59,7 @@ public class Trabalhador extends Thread {
                 br.close();
                 fr.close();
 
-
+                //UDP multicast
                 InetAddress grupo = InetAddress.getByName( "228.5.6.7" );
                 DatagramPacket busca = new DatagramPacket( s.getBytes(), s.length(), grupo, 3000 );
                 
@@ -66,10 +68,51 @@ public class Trabalhador extends Thread {
                 ms.send(busca);
                 System.out.println( "Ok." );
                 
-                //Gera a lista de resposta
+
+                Resposta r = new Resposta();
+
+                //temporizador
+                Boolean continuar = true;
+
+                DatagramPacket pacote = new DatagramPacket(new byte[500],500);
+                DatagramSocket socket = new DatagramSocket(7000);
                 
+                socket.setSoTimeout(60);
                 
-                Resposta r = new Resposta(/*c.buscaProduto(s)*/);
+
+                //por 20 segundos recebe respostas
+                while(continuar){
+
+                    //Gera a lista de resposta
+
+                    System.out.println("Aguardando pacote ...");
+                    try {
+
+                        socket.receive(pacote);
+                        
+                        System.out.println("Pacote recebido!");
+
+                        byte[] objeto_binario = pacote.getData();
+                        ByteArrayInputStream buf =  new ByteArrayInputStream(objeto_binario);
+                        ObjectInputStream l = new ObjectInputStream(buf);
+
+                        Resposta rr = (Resposta) l.readObject();
+        
+                        r.concatenaProdutos(rr);
+
+
+                    } catch (Exception e) {
+
+                        continuar = false;
+
+                    }
+                    
+                    
+                    
+                }
+                
+                socket.close();
+
                 
                 //Envia resposta
                 gravador.writeObject(r);

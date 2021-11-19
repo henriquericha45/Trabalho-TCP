@@ -54,6 +54,7 @@ public class Loja {
                 gravador.writeObject(r);
                 byte[] objeto_binario = buf.toByteArray();
                 int tam = objeto_binario.length;
+                System.out.println(tam);
 
                 InetAddress endereco_servidor = InetAddress.getByName("127.0.0.1");
                 int porta_servidor = 7000;

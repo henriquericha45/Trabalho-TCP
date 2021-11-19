@@ -35,5 +35,12 @@ class Catalogo{
 
     }
 
+    public ArrayList<Produto> rt(){
+
+
+        return this.produtos;
+
+    }
+
 }
 
