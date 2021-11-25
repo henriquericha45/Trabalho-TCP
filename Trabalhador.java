@@ -9,6 +9,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Instant;
@@ -62,7 +63,7 @@ public class Trabalhador extends Thread {
                 String timeout_resposta = s.replace("timeout ", "");
                 timeout[0] = Integer.parseInt(timeout_resposta);
 
-                System.out.println(nome+": Timeout alterado >" + timeout_resposta);
+                System.out.println(nome+": Timeout alterado >" + timeout[0]);
 
 
             } else {
@@ -91,7 +92,7 @@ public class Trabalhador extends Thread {
                 //temporizador
                 Boolean continuar = true;
 
-                DatagramPacket pacote = new DatagramPacket(new byte[500],500);
+                
                 DatagramSocket socket = new DatagramSocket(7000);
                 
                 socket.setSoTimeout(timeout[0]);
@@ -104,6 +105,8 @@ public class Trabalhador extends Thread {
                     System.out.println(nome+": Aguardando pacote resposta");
                     try {
 
+                        DatagramPacket pacote = new DatagramPacket(new byte[500],500);                        
+                        
                         socket.receive(pacote);
                         
                         System.out.println(nome+": Pacote recebido");
@@ -117,9 +120,12 @@ public class Trabalhador extends Thread {
                         r.concatenaProdutos(rr);
 
 
-                    } catch (Exception e) {
+                    } catch (SocketTimeoutException   e) {
+
+                        System.out.println("FIM");
 
                         continuar = false;
+                        continue;
 
                     }
                     

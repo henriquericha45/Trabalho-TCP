@@ -16,7 +16,7 @@ public class Servidor {
 
             MulticastSocket ms = new MulticastSocket();
 
-            int[] timeout = {2000}; 
+            int[] timeout = {1000}; 
 
             
 
@@ -37,10 +37,10 @@ public class Servidor {
 
             ss.close();
 
-        } catch (IOException e) {
-            
-            e.printStackTrace();
-        }
+            } catch (IOException e) {
+                
+                e.printStackTrace();
+            }
 
     }
 
